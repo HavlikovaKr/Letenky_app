@@ -32,13 +32,12 @@ destinace = list(city.keys())[destinace_num - 1]  # Výběr destinace podle čí
 
 children = int(input("POČET DĚTÍ DO 10 LET: "))
 adult = int(input("POČET OSOB: "))
-
+ticket_price = city[destinace] * adult
 
 weights_input = input("ZADEJTE VÁHY ZAVAZADEL ODDĚLENO ČÁRKOU (např. 16.5, 17): ")
 
 # Rozdělení vstupu na jednotlivé váhy podle čárky a převod na seznam čísel (float)
 weights_list = [float(weight.strip()) for weight in weights_input.split(',')]
-
 
 #  Výpočet ceny zavazadel podle váhy
 luggage_prices = []
@@ -48,6 +47,15 @@ for weight in weights_list:
     else:
         luggage_prices.append(200)
 
-total_price = (city[destinace] * adult) + sum(luggage_prices)
+# KONTROLA VÝPOČTU FINÁLNÍ CENY BEZ DĚTÍ
+# total_price = (city[destinace] * adult) + sum(luggage_prices)
+# print("Celková cena:", total_price)
 
-print("Celková cena:", total_price)
+# SLEVA DÍTĚ
+discount = 0
+if children > 0:
+    discount = 0.5 * city[destinace] * children
+
+# CELKOVÁ CENA SE ZAVAZADLY A DĚTMI
+total_price = (ticket_price - discount) + sum(luggage_prices)
+print(total_price)
