@@ -1,4 +1,4 @@
-# Aplikace na letenky 
+
 city = { "Londýn": 1000, "Berlín": 500, "Řím": 1200, "Madrid": 1500, "Budapešť": 900 } 
 city["Riga"] = 600
 
