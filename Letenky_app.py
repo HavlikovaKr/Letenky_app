@@ -36,3 +36,18 @@ adult = int(input("POČET OSOB: "))
 
 weights_input = input("ZADEJTE VÁHY ZAVAZADEL ODDĚLENO ČÁRKOU (např. 16.5, 17): ")
 
+# Rozdělení vstupu na jednotlivé váhy podle čárky a převod na seznam čísel (float)
+weights_list = [float(weight.strip()) for weight in weights_input.split(',')]
+
+
+#  Výpočet ceny zavazadel podle váhy
+luggage_prices = []
+for weight in weights_list:
+    if weight <= 15:
+        luggage_prices.append(100)
+    else:
+        luggage_prices.append(200)
+
+total_price = (city[destinace] * adult) + sum(luggage_prices)
+
+print("Celková cena:", total_price)
