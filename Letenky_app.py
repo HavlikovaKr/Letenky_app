@@ -17,65 +17,76 @@ offers = """
 6 - Riga      |   700,- Kč
 -----------------------------------
 "SLEVA NA LETENKY"
-DĚTI DO 10 LET - 50%
+DĚTI DO 10 LET - 50% sleva
 -----------------------------------
-"CENA ZAVAZADEL"
-DO 15KG CENA: 100,- Kč
-NAD 15KG CENA: 200,-KČ
-***MOŽNOST POUZE JEDNO ZAVAZADLO NA OSOBU NEBO DÍTĚ***  
+"CENA ZAVAZADEL NA LETENKU"
+DO 20KG CENA: 200,- Kč
+NAD 20KG CENA: 300,-KČ  
 """
 print (double_line, offers, end='') 
 print(double_line) 
 
 print("'VYPLNĚNÍ FORMULÁŘE'")
 
-destinace_num = int(input("VYBERTE ČÍSLO DESTINACE: "))
-destinace = list(city.keys())[destinace_num - 1]  # Výběr destinace podle čísla
-
-children = int(input("POČET DĚTÍ DO 10 LET: "))
-adult = int(input("POČET DALŠÍCH OSOB: "))
-
-# Kontrola, zda počet zavazadel odpovídá počtu osob a dětí
+# Ošetření špatného formátu
 while True:
-    weights_input = input("ZADEJTE VÁHY ZAVAZADEL ODDĚLENO ČÁRKOU (např. 16.5, 17): ")
-    
-    # Rozdělení vstupu na jednotlivé váhy podle čárky a převod na seznam čísel (float)
-    weights_list = [float(weight.strip()) for weight in weights_input.split(',')]
+    try:
+        destinace_num = int(input("VYBERTE ČÍSLO DESTINACE: "))
+        destinace = list(city.keys())[destinace_num - 1]  # Výběr destinace podle čísla
+        break 
+    except (ValueError, IndexError):
+        print("Špatný formát nebo číslo destinace. Vyplňte znovu.")
 
-    if len(weights_list) > (adult + children):
-        print("Počet zavazadel je větší než počet osob a dětí dohromady! Zadejte znovu.")
-    else:
-        break  # Pokud je počet zavazadel v pořádku, ukončíme cyklus
+while True:
+    try:
+        adult = int(input("POČET DOSPĚLÝCH: "))
+        break
+    except ValueError:
+        print("Špatný formát. Vyplňte znovu číslo dospělých.")
 
-# Výpočet ceny zavazadel podle váhy
-luggage_prices = []
-for weight in weights_list:
-    if weight <= 15:
-        luggage_prices.append(100)
-    else:
-        luggage_prices.append(200)
-    
+while True:
+    try:
+        children = int(input("POČET DĚTÍ DO 10 LET: "))
+        break
+    except ValueError:
+        print("Špatný formát. Vyplňte znovu počet dětí.")
 
-# KONTROLA VÝPOČTU FINÁLNÍ CENY BEZ DĚTÍ
-# total_price = (city[destinace] * adult) + sum(luggage_prices)
-# print("Celková cena:", total_price)
+while True:
+    try:
+        weights = float(input("ZADEJTE VÁHU ZAVAZADEL DOHROMADY v Kg: "))
+        break
+    except ValueError:
+        print("Špatný formát. Zadejte znovu váhu zavazadel jako číslo.")
 
-# Výpočet ceny letenek
-ticket_price_adult = city[destinace] * adult  # Cena pro dospělé
-ticket_price_children = 0.5 * city[destinace] * children  # 50% sleva na dětské letenky
+# Zavazadla
+if weights <= 20:
+    total_luggage = 200
+else:
+    weights > 20
+    total_luggage = 300
 
-# Výpočet celkové ceny
-total_price = ticket_price_adult + ticket_price_children + sum(luggage_prices)
+# Cena za dospělé
+ticket_price = city[destinace] * adult
 
+# Sleva pro děti 50% a cena bez dětí
+if children > 0:
+    discount = 0.5 * city[destinace] * children
+    ticket_price = ticket_price + discount 
+else:
+    # Pokud nejsou děti, cena je jen za dospělé
+    ticket_price = city[destinace] * adult
+
+# Celková cena (letenky + zavazadla)
+price = ticket_price + total_luggage
 
 print(double_line)
-print("     ***LETENKA*** ")
+print("     *** LETENKA *** ")
 print(double_line)
 print(f"DESTINACE: {destinace}")
 print(f"POČET DOSPĚLÝCH: {adult}")
 print(f"POČET DĚTÍ DO 10 LET: {children}")
-print(f"CENA ZAVAZADEL: {', '.join(map(str, luggage_prices))} Kč")
+print(f"CENA ZAVAZADEL: {total_luggage} Kč")
 print(double_line)
-print(f"CELKOVÁ CENA: {total_price:.2f} Kč")
+print(f"CELKOVÁ CENA: {price:.2f} Kč")
 print(double_line)
 
