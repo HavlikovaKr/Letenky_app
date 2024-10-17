@@ -6,7 +6,7 @@ line = 35 * "_"
 double_line = 35 * "="
 offers = """ 
 (VÍTEJTE V APLIKACI EVROPA LETENKY!
-***ODLET POUZE Z PRAHY***
+    ***ODLET POUZE Z PRAHY***
 -----------------------------------
           "DESTINACE"
 1 - Londýn    |   1000,-Kč 
@@ -79,14 +79,23 @@ else:
 # Celková cena (letenky + zavazadla)
 price = ticket_price + total_luggage
 
+
+ticket_info = {
+    "DESTINACE": destinace,
+    "POČET DOSPĚLÝCH": adult,
+    "POČET DĚTÍ DO 10 LET": children,
+    "CENA ZAVAZADEL": f"{total_luggage} Kč",
+    "CELKOVÁ CENA": f"{price:.2f} Kč"
+}
+
+# Výstup
 print(double_line)
 print("     *** LETENKA *** ")
 print(double_line)
-print(f"DESTINACE: {destinace}")
-print(f"POČET DOSPĚLÝCH: {adult}")
-print(f"POČET DĚTÍ DO 10 LET: {children}")
-print(f"CENA ZAVAZADEL: {total_luggage} Kč")
-print(double_line)
-print(f"CELKOVÁ CENA: {price:.2f} Kč")
+
+# Smyčka pro výpis údajů ze slovníku
+for key, value in ticket_info.items():
+    print(f"{key}: {value}")
+
 print(double_line)
 
