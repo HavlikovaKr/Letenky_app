@@ -22,17 +22,16 @@ DO 15KG CENA: 100,-Kč
 NAD 15KG CENA: 200,-KČ
 ***MOŽNOST POUZE JEDNO ZAVAZADLO NA OSOBU NEBO DÍTĚ***  
 """
-# print (double_line, offers, end='') 
-# print(double_line) 
+print (double_line, offers, end='') 
+print(double_line) 
 
-print("'INFORMACE'")
+print("'VYPLNĚNÍ FORMULÁŘE'")
 
 destinace_num = int(input("VYBERTE ČÍSLO DESTINACE: "))
 destinace = list(city.keys())[destinace_num - 1]  # Výběr destinace podle čísla
 
 children = int(input("POČET DĚTÍ DO 10 LET: "))
 adult = int(input("POČET OSOB: "))
-ticket_price = city[destinace] * adult
 
 weights_input = input("ZADEJTE VÁHY ZAVAZADEL ODDĚLENO ČÁRKOU (např. 16.5, 17): ")
 
@@ -51,11 +50,22 @@ for weight in weights_list:
 # total_price = (city[destinace] * adult) + sum(luggage_prices)
 # print("Celková cena:", total_price)
 
-# SLEVA DÍTĚ
-discount = 0
-if children > 0:
-    discount = 0.5 * city[destinace] * children
+# Výpočet ceny letenek
+ticket_price_adult = city[destinace] * adult  # Cena pro dospělé
+ticket_price_children = 0.5 * city[destinace] * children  # 50% sleva na dětské letenky
 
-# CELKOVÁ CENA SE ZAVAZADLY A DĚTMI
-total_price = (ticket_price - discount) + sum(luggage_prices)
-print(total_price)
+# Výpočet celkové ceny
+total_price = ticket_price_adult + ticket_price_children + sum(luggage_prices)
+
+# print(total_price)
+print(double_line)
+print(" ***LETENKA*** ")
+print(double_line)
+print(f"DESTINACE: {destinace}")
+print(f"POČET DOSPĚLÝCH: {adult}")
+print(f"POČET DĚTÍ DO 10 LET: {children}")
+print(f"CENA ZAVAZADEL: {', '.join(map(str, luggage_prices))} Kč")
+print(double_line)
+print(f"CELKOVÁ CENA: {total_price:.2f} Kč")
+print(double_line)
+
