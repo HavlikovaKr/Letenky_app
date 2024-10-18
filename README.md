@@ -14,7 +14,10 @@ Berlín: 500 Kč
 Řím: 1200 Kč
 Madrid: 1500 Kč
 Budapešť: 900 Kč
-Riga: 700 Kč (nově přidaná destinace)
+Riga: 700 Kč 
+
+# SLEVA NA DÍTĚ DO 10 LET
+50% z ceny destinace
 
 # CENA ZAVAZADEL:
 Do 20 kg: 200 Kč
@@ -30,9 +33,9 @@ Váhu zavazadel
 Na konci obdržíte kompletní souhrn a celkovou cenu letenky.
 Výstup:
 
-===================================
+============================
      *** LETENKA *** 
-===================================
+============================
 DESTINACE: Londýn
 POČET DOSPĚLÝCH: 2
 POČET DĚTÍ DO 10 LET: 1
@@ -40,11 +43,6 @@ CENA ZAVAZADEL: 200 Kč
 CELKOVÁ CENA: 2500.00 Kč
 ===================================
 
-Jak začít:
-1# Naklonujte tento repozitář:
-git clone https://github.com/tvuj_repozitar/letenky.git
-2# Spusťte skript pomocí příkazu:
-python letenky.py
 
 POŽADAVKY:
 Python 3.x
