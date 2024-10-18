@@ -33,15 +33,15 @@ Váhu zavazadel
 Na konci obdržíte kompletní souhrn a celkovou cenu letenky.
 Výstup:
 
-============================
+===========================
      *** LETENKA *** 
-============================
+===========================
 DESTINACE: Londýn
 POČET DOSPĚLÝCH: 2
 POČET DĚTÍ DO 10 LET: 1
 CENA ZAVAZADEL: 200 Kč
 CELKOVÁ CENA: 2500.00 Kč
-===================================
+===========================
 
 
 POŽADAVKY:
